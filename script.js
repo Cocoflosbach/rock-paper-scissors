@@ -59,6 +59,7 @@ function gameScores() {
   }
 }
 
+//Defines the rules of the game and returns a winner for each round
 function gameRound(playerSelection, computerSelection) {
   playerSelection = playerChoice();
   computerSelection = computerChoice();
@@ -116,6 +117,7 @@ function gameRound(playerSelection, computerSelection) {
   );
 }
 
+//function for a 5 round game using loops
 function playGame() {
   const computerSelection = computerChoice();
   const playerSelection = playerChoice();
