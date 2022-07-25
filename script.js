@@ -1,29 +1,18 @@
-// What should happen when user clicks one of the buttons?
-//
-//
-
 let computerScore = 0;
 let playerScore = 0;
+
+const buttons = document.querySelectorAll("button");
 
 // Function returns either rock, paper or scissors as computer play
 function computerPlay() {
   const num = Math.floor(Math.random() * 3);
   if (num === 1) {
-    return "rock";
+    return "Rock";
   } else if (num === 2) {
-    return "paper";
+    return "Paper";
   } else {
-    return "scissors";
+    return "Scissors";
   }
-}
-
-// Returns player's choice for a round of game
-function playerChoice() {
-  const choice = prompt(
-    "Your Play! Choose between Rock, Paper and Scissors"
-  ).toLowerCase();
-  return choice;
-  console.log(choice);
 }
 
 // Returns computer's choice for a round of game
@@ -60,71 +49,92 @@ function gameScores() {
 }
 
 //Defines the rules of the game and returns a winner for each round
-function gameRound(playerSelection, computerSelection) {
-  playerSelection = playerChoice();
-  computerSelection = computerChoice();
+function gameRound(playerSelection) {
+  let computerSelection = computerChoice();
+
+  let choices = document.querySelector("#choices");
+  let roundResult = document.querySelector("#round-result");
+  let scores = document.querySelector("#scores");
+  // let totalScore = document.querySelector("#total-score");
 
   if (
     (playerSelection === "rock" && computerSelection === "rock") ||
     (playerSelection === "paper" && computerSelection === "paper") ||
     (playerSelection === "scissors" && computerSelection === "scissors")
   ) {
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("We have a tie! Try again.");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "We have a tie! Try again.";
   } else if (playerSelection === "rock" && computerSelection === "paper") {
     computerScore++;
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("You Lost! Paper beats Rock");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "You Lost! Paper beats Rock";
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
     playerScore++;
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("You Won! Scissors beats Paper");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "You Won! Scissors beats Paper";
   } else if (playerSelection === "paper" && computerSelection === "rock") {
     playerScore++;
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("You Won! Paper beats Rock");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "You Won! Paper beats Rock";
   } else if (playerSelection === "paper" && computerSelection === "scissors") {
     computerScore++;
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("You Lost! Scissors beats Paper");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "You Lost! Scissors beats Paper";
   } else if (playerSelection === "scissors" && computerSelection === "rock") {
     computerScore++;
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("You Lost! Rock beats Scissors");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "You Lost! Rock beats Scissors";
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
     playerScore++;
-    console.log(
-      "You chose: " + playerSelection + ", Computer chose: " + computerSelection
-    );
-    console.log("You Won! Rock beats Scissors");
+    choices.textContent =
+      "You chose: " +
+      playerSelection.toUpperCase() +
+      ", Computer chose: " +
+      computerSelection.toUpperCase();
+    roundResult.textContent = "You Won! Rock beats Scissors";
   }
-
-  console.log(
-    "Player scored: " + playerScore,
-    " and Computer scored: " + computerScore
-  );
+  scores.textContent =
+    "Player Score: " + playerScore + ", Computer Score: " + computerScore;
+  //totalScore.textContent = gameScores();
 }
 
-//function for a 5 round game using loops
 function playGame() {
-  const computerSelection = computerChoice();
-  const playerSelection = playerChoice();
+  buttons.forEach((button) => {
+    const playerPlay = button.id;
+    console.log(playerPlay);
+    button.addEventListener("click", function (event) {
+      gameRound(playerPlay);
+      event.preventDefault();
+    });
+  });
+}
 
-  for (let i = 0; i < 5; i++) {
-    gameRound(computerSelection, playerSelection);
-  }
-  //console.log(gameRound(computerSelection, playerSelection));
-  console.log(gameScores());
+playGame();
+
+function reloadThePage() {
+  window.location.reload(true);
 }
