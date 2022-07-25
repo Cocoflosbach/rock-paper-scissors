@@ -122,6 +122,7 @@ function gameRound(playerSelection) {
   //totalScore.textContent = gameScores();
 }
 
+//Function to execute a round of game per button click
 function playGame() {
   buttons.forEach((button) => {
     const playerPlay = button.id;
@@ -135,6 +136,7 @@ function playGame() {
 
 playGame();
 
+//Function to reload page
 function reloadThePage() {
   window.location.reload(true);
 }
