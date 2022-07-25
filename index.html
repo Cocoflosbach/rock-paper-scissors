@@ -5,25 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale= 1.0" />
     <title>Rock, Paper, Scissors!</title>
     <link rel="stylesheet" href="./style.css" />
-    <script src="./script.js"></script>
   </header>
   <body>
     <div class="container">
       <div class="header">
         <h1 class="header-text">Lets play Rock, Paper, Scissors!</h1>
         <h5 class="instructions">
-          You will be playing against the computer. The game will run for 5
-          rounds, after which a final winner will be declared.
+          You will be playing against the computer. The game will run for as many rounds as you wish to play. Click the reset button to start a new game.
         </h5>
         <p class="call-to-action">
           To begin the game, click one of the options below.
         </p>
       </div>
       <div class="game-buttons">
-        <button class="rock-button">Rock</button>
-        <button class="paper-button">Paper</button>
-        <button class="scissors-button">Scissors</button>
+        <button type="button" id="rock" class="rock-button">🪨</button>
+        <button type="button" id="paper" class="paper-button">📜</button>
+        <button type="button" id="scissors" class="scissors-button">
+          ✂︎
+        </button>
       </div>
+      <div class="result-text" id="choices"></div>
+      <div class="result-text" id="round-result"></div>
+      <div class="result-text" id="scores"></div>
+      <div class="result-text" id="total-score"></div>
+      <div>
+        <input type="button" value="Reset" id="reset" class="reset-button" onclick="reloadThePage()"></input type="button">
+      </div>
+      
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>
